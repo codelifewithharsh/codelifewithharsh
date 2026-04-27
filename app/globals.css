@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-action-blue: #0066cc;
+  --color-focus-blue: #0071e3;
+  --color-sky-blue: #2997ff;
+  --color-near-black: #1d1d1f;
+  --color-dark-tile: #272729;
+  --color-parchment: #f5f5f7;
+
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #1d1d1f;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #0066cc;
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+}
+
+/* ─── Floating animations for hero badge chips ─── */
+@keyframes float-a {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+@keyframes float-b {
+  0%, 100% { transform: translateY(-6px); }
+  50%       { transform: translateY(8px); }
+}
+@keyframes float-c {
+  0%, 100% { transform: translateY(4px); }
+  50%       { transform: translateY(-10px); }
+}
+
+.float-a { animation: float-a 5s ease-in-out infinite; }
+.float-b { animation: float-b 6.5s ease-in-out infinite; }
+.float-c { animation: float-c 4.5s ease-in-out infinite; }
+
+/* ─── Reel stack: initial positions and hover fan ─── */
+.reel-1 { transform: rotate(-8deg) translateX(-32px) scale(0.88); transform-origin: bottom center; }
+.reel-2 { transform: rotate(0deg)  translateX(0px)   scale(1);    transform-origin: bottom center; }
+.reel-3 { transform: rotate(8deg)  translateX(32px)  scale(0.92); transform-origin: bottom center; }
+
+.reel-1, .reel-2, .reel-3 {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reel-stack:hover .reel-1 { transform: rotate(-12deg) translateX(-28px) scale(0.88); }
+.reel-stack:hover .reel-2 { transform: rotate(0deg)   translateX(0px)   scale(1);    }
+.reel-stack:hover .reel-3 { transform: rotate(12deg)  translateX(28px)  scale(0.92); }
+
+
+/* ─── Pulse dot (for status indicators) ─── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.85); }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* ─── Stats underline slide ─── */
+.stat-hover {
+  position: relative;
+}
+.stat-hover::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 1px;
+  background: #0066cc;
+  transition: width 0.3s ease;
+}
+.stat-hover:hover::after { width: 100%; }
+
+/* ─── Smooth card lift ─── */
+.card-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+/* ─── Navbar link underline ─── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 1px;
+  background: currentColor;
+  transition: width 0.2s ease;
+}
+.nav-link:hover::after { width: 100%; }
