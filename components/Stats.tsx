@@ -5,10 +5,10 @@ import { useInView } from "framer-motion";
 import { useCountUp, FadeUp } from "@/components/AnimatedSection";
 
 const stats = [
-  { value: 2, suffix: "+", label: "Years at Zeta", description: "SDE experience" },
-  { value: 4, suffix: "+", label: "AI Projects", description: "shipped to production" },
-  { value: 100, suffix: "+", label: "n8n Templates", description: "curated & open source" },
-  { value: 52, suffix: "", label: "Reels / year", description: "posting every week" },
+  { value: 2, suffix: "+", label: "Years shipping apps", description: "used by 10M+ users" },
+  { value: 5, suffix: "+", label: "Awards won", description: "at Zeta" },
+  { value: 100, suffix: "+", label: "n8n templates", description: "open-sourced for the community" },
+  { value: 16, suffix: "K+", label: "Views on Instagram", description: "and counting" },
 ];
 
 function StatItem({ value, suffix, label, description, delay }: typeof stats[0] & { delay: number }) {

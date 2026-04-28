@@ -58,7 +58,7 @@ function HeroVisual() {
       <div className="relative z-10 w-full max-w-[390px] mx-auto">
         <Image
           src="/hero.png"
-          alt="Harsh — Frontend Engineer & AI Builder"
+          alt="Harsh - Software Engineer & AI Builder"
           width={390}
           height={460}
           priority
@@ -67,8 +67,26 @@ function HeroVisual() {
       </div>
 
       {/* Floating chip — 10M+ Users (top-left) */}
-      <div className="float-a absolute top-[8%] left-0 z-20 bg-[#272729]/90 backdrop-blur-sm rounded-[14px] p-3.5 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-        <div className="flex items-start gap-2.5">
+      <div className="float-a absolute top-[8%] left-0 z-20 bg-[#272729]/90 backdrop-blur-sm rounded-[14px] p-2 md:p-3.5 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+        {/* Mobile version */}
+        <div className="md:hidden flex flex-row items-start gap-2">
+          <div className="w-6 h-6 rounded-full bg-[#0066cc]/20 flex-shrink-0 flex items-center justify-center mt-0.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2997ff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <div className="flex flex-col">
+            <p className="text-[18px] font-bold text-white leading-none tracking-tight">10+</p>
+            <p className="text-[9px] text-white/50 leading-tight">users on app</p>
+            <p className="text-[9px] text-white/50 leading-tight">I helped ship</p>
+          </div>
+        </div>
+
+        {/* Desktop version */}
+        <div className="hidden md:flex items-start gap-2.5">
           <div className="w-8 h-8 rounded-full bg-[#0066cc]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
             <svg viewBox="0 0 24 24" fill="none" stroke="#2997ff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -89,22 +107,22 @@ function HeroVisual() {
       </div>
 
       {/* Floating chip — @codelifewithharsh (top-right) */}
-      <div className="float-b absolute top-[18%] right-0 z-20 bg-[#0066cc] rounded-[12px] px-3 py-2.5 shadow-[0_4px_16px_rgba(0,102,204,0.45)]">
-        <div className="flex items-center gap-2 mb-2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 flex-shrink-0">
+      <div className="float-b absolute top-[18%] right-0 z-20 bg-[#0066cc] rounded-[12px] px-1.5 md:px-3 py-1.5 md:py-2.5 shadow-[0_4px_16px_rgba(0,102,204,0.45)]">
+        <div className="flex items-center gap-1 md:gap-2 mb-1 md:mb-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 flex-shrink-0">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
             <circle cx="12" cy="12" r="4" />
             <circle cx="17.5" cy="6.5" r="0.5" fill="white" stroke="none" />
           </svg>
-          <p className="text-[11px] font-bold text-white">@codelifewithharsh</p>
+          <p className="text-[8px] md:text-[11px] font-bold text-white">@codelifewithharsh</p>
         </div>
-        <div className="flex items-center gap-1.5 flex-wrap">
+        <div className="flex items-center gap-0.5 md:gap-1.5 flex-wrap">
           {[
             { label: "AI", color: "bg-white/15 text-white" },
             { label: "Automation", color: "bg-white/15 text-white"},
             { label: "Tech", color: "bg-white/15 text-white" },
           ].map(({ label, color }) => (
-            <span key={label} className={`text-[8px] font-medium px-1.5 py-0.5 rounded-full ${color}`}>
+            <span key={label} className={`text-[6px] md:text-[8px] font-medium px-0.5 md:px-1.5 py-0.5 rounded-full ${color}`}>
               {label}
             </span>
           ))}
@@ -112,17 +130,17 @@ function HeroVisual() {
       </div>
 
       {/* Floating chip — Quick Facts (bottom-right) */}
-      <div className="float-c absolute bottom-[12%] right-0 z-20 bg-[#1d1d1f]/90 backdrop-blur-sm rounded-[14px] p-3.5 border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
-        <p className="text-[9px] font-semibold tracking-[0.1em] uppercase text-white/30 mb-2.5">Quick Facts</p>
-        <div className="flex flex-col gap-2">
+      <div className="float-c absolute bottom-[12%] right-0 z-20 bg-[#1d1d1f]/90 backdrop-blur-sm rounded-[14px] p-2 md:p-3.5 border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
+        <p className="text-[8px] md:text-[9px] font-semibold tracking-[0.1em] uppercase text-white/30 mb-1.5 md:mb-2.5">Quick Facts</p>
+        <div className="flex flex-col gap-1.5 md:gap-2">
           {[
             { emoji: "🎓", text: "BITS Pilani Grad" },
             { emoji: "🎤", text: "Tech Conclave Speaker" },
             { emoji: "🏆", text: "Multiple Awards Winner" },
           ].map(({ emoji, text }) => (
-            <div key={text} className="flex items-center gap-2">
-              <span className="text-[12px] leading-none">{emoji}</span>
-              <span className="text-[11px] text-white/70 font-medium">{text}</span>
+            <div key={text} className="flex items-center gap-1.5 md:gap-2">
+              <span className="text-[10px] md:text-[12px] leading-none">{emoji}</span>
+              <span className="text-[9px] md:text-[11px] text-white/70 font-medium">{text}</span>
             </div>
           ))}
         </div>
@@ -170,7 +188,7 @@ export default function Hero() {
               {...fadeUp(0.35)}
               className="text-[14px] md:text-[15px] font-light text-white/40 leading-[1.8] mb-10 max-w-[400px]"
             >
-              Turning real-world problems into AI-powered solutions — and documenting every step on{" "}
+              Turning real-world problems into AI-powered solutions and documenting every step on{" "}
               <span className="text-[#2997ff] font-normal">@codelifewithharsh</span>.
             </motion.p>
 
