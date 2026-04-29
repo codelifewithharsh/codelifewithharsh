@@ -55,10 +55,34 @@ const contactItems = [
 
 function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    setLoading(false);
+
+    if (res.ok) {
+      setSent(true);
+    } else {
+      setError("Something went wrong. Please email me directly.");
+    }
   };
 
   return (
@@ -129,13 +153,17 @@ function ContactForm() {
               className="w-full bg-[#f5f5f7] text-[#1d1d1f] text-[15px] rounded-[11px] px-4 py-3 outline-none border border-transparent focus:border-[#0071e3] focus:bg-white placeholder:text-[#1d1d1f]/30 transition-all duration-200 resize-none"
             />
           </div>
+          {error && (
+            <p className="text-red-500 text-[13px] text-center -mb-1">{error}</p>
+          )}
           <motion.button
             type="submit"
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.97 }}
-            className="w-full bg-[#0066cc] hover:bg-[#0071e3] text-white text-[17px] font-normal py-[13px] rounded-full transition-colors duration-200 mt-1"
+            disabled={loading}
+            whileHover={{ scale: loading ? 1 : 1.01 }}
+            whileTap={{ scale: loading ? 1 : 0.97 }}
+            className="w-full bg-[#0066cc] hover:bg-[#0071e3] disabled:opacity-60 disabled:cursor-not-allowed text-white text-[17px] font-normal py-[13px] rounded-full transition-colors duration-200 mt-1"
           >
-            Let&apos;s build it →
+            {loading ? "Sending…" : "Let's build it →"}
           </motion.button>
         </motion.form>
       )}
