@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { FadeUp, StaggerGrid, StaggerItem } from "@/components/AnimatedSection";
 
@@ -12,6 +13,7 @@ type Project = {
   tags: string[];
   github: string;
   demo?: string;
+  n8nLink?: string;
   accentColor: string;
 };
 
@@ -22,8 +24,10 @@ const projects: Project[] = [
     title: "Job Fit Evaluator + Application Generator",
     description:
       "Drop a Telegram job link. Get tailored resume, cover letter, and fit score — automatically.",
-    tags: ["n8n", "OpenAI", "Pinecone", "Apify", "RAG"],
-    github: "https://github.com/codelifewithharsh",
+    tags: ["n8n", "OpenAI", "Pinecone", "Apify", "Google Sheets", "RAG"],
+    github: "https://github.com/codelifewithharsh/AI-Job-Assistant",
+    n8nLink: "https://n8n.io/workflows/14667-evaluate-job-fit-and-generate-application-assets-from-telegram-links-with-openai-pinecone-apify-and-google-sheets/",
+    demo: "https://www.instagram.com/reel/DWqYkAeD-Lw/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     accentColor: "#0066cc",
   },
   {
@@ -34,6 +38,7 @@ const projects: Project[] = [
       "Call an AI. Ask about the flat. Book a visit. Fully automated.",
     tags: ["Vapi", "Voice AI", "Conversational AI", "Automation"],
     github: "https://github.com/codelifewithharsh",
+    demo: "https://www.instagram.com/reel/DXMXqN-jzXY/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     accentColor: "#2997ff",
   },
   {
@@ -53,7 +58,7 @@ const projects: Project[] = [
     description:
       "Hand-picked collection of production-ready n8n templates for AI agents and business automation.",
     tags: ["n8n", "Automation", "AI Workflows", "Open Source"],
-    github: "https://github.com/codelifewithharsh",
+    github: "https://github.com/codelifewithharsh/AI-Workflows",
     accentColor: "#ff6b35",
   },
 ];
@@ -102,7 +107,7 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {/* Links */}
-        <div className="flex items-center gap-2 pt-1 border-t border-black/[0.05]">
+        <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-black/[0.05]">
           <Link
             href={project.github}
             target="_blank"
@@ -114,20 +119,32 @@ function ProjectCard({ project }: { project: Project }) {
             </svg>
             GitHub
           </Link>
+
           {project.demo && (
             <Link
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: project.accentColor, borderColor: project.accentColor + "40" }}
-              className="inline-flex items-center gap-1.5 text-[13px] font-medium border rounded-full px-3.5 py-1.5 transition-colors hover:bg-[#0066cc]/5"
+              className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#1d1d1f] bg-[#f5f5f7] hover:bg-[#ebebed] rounded-full px-3.5 py-1.5 transition-colors"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
-                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
               </svg>
               Live Demo
+            </Link>
+          )}
+
+          {project.n8nLink && (
+            <Link
+              href={project.n8nLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#1d1d1f] bg-[#f5f5f7] hover:bg-[#ebebed] rounded-full px-3.5 py-1.5 transition-colors"
+            >
+              <Image src="/n8n-logo.svg" alt="n8n" width={14} height={14} />
+              View on n8n
             </Link>
           )}
         </div>

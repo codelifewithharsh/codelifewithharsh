@@ -13,9 +13,9 @@ const links = [
   {
     heading: "Content",
     items: [
-      { label: "codelifewithharsh", href: "#content" },
-      { label: "Instagram", href: "https://www.instagram.com/codelifewithharsh?igsh=OWtpcHRhMWJlaW1h" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/code-life-with-harsh/" },
+      { label: "@codelifewithharsh", href: "https://instagram.com/codelifewithharsh" },
+      { label: "YouTube", href: "https://youtube.com/@codelifewithharsh" },
+      { label: "LinkedIn", href: "https://linkedin.com/in/code-life-with-harsh" },
       { label: "GitHub", href: "https://github.com/codelifewithharsh" },
     ],
   },
@@ -51,6 +51,15 @@ const socials = [
       </svg>
     ),
   },
+  {
+    label: "YouTube",
+    href: "https://youtube.com/@codelifewithharsh",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+    ),
+  },
 ];
 
 export default function Footer() {
@@ -62,7 +71,8 @@ export default function Footer() {
           <div className="md:col-span-1">
             <p className="text-white text-[18px] font-semibold tracking-tight mb-3">harsh</p>
             <p className="text-[13px] text-white/40 leading-[1.65] mb-5 max-w-[240px]">
-              Frontend Engineer + AI Builder. Teaching what I build at codelifewithharsh.
+              I build apps that scale to millions.
+              Then I make them smarter with AI.
             </p>
             <div className="flex items-center gap-3">
               {socials.map((s) => (
@@ -107,10 +117,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/[0.06] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[12px] text-white/25 tracking-tight">
-            © {new Date().getFullYear()} Harsh. Built with Next.js & Tailwind CSS.
+            © 2026 Harsh. All rights reserved.
           </p>
           <p className="text-[12px] text-white/25 tracking-tight">
-            codelifewithharsh
+            Made with intent. Shipped with care.
           </p>
         </div>
       </div>

@@ -119,13 +119,13 @@ function ContactForm() {
             </div>
           </div>
           <div>
-            <label htmlFor="message" className="block text-[12px] font-semibold text-[#1d1d1f]/50 tracking-tight mb-1.5 uppercase">What do you need?</label>
+            <label htmlFor="message" className="block text-[12px] font-semibold text-[#1d1d1f]/50 tracking-tight mb-1.5 uppercase">What are you building?</label>
             <textarea
               id="message"
               name="message"
               required
               rows={5}
-              placeholder="Tell me about your project..."
+              placeholder="e.g. I need an AI automation for my sales pipeline, or a mobile app for..."
               className="w-full bg-[#f5f5f7] text-[#1d1d1f] text-[15px] rounded-[11px] px-4 py-3 outline-none border border-transparent focus:border-[#0071e3] focus:bg-white placeholder:text-[#1d1d1f]/30 transition-all duration-200 resize-none"
             />
           </div>
@@ -135,7 +135,7 @@ function ContactForm() {
             whileTap={{ scale: 0.97 }}
             className="w-full bg-[#0066cc] hover:bg-[#0071e3] text-white text-[17px] font-normal py-[13px] rounded-full transition-colors duration-200 mt-1"
           >
-            Send message
+            Let&apos;s build it →
           </motion.button>
         </motion.form>
       )}
@@ -159,14 +159,13 @@ export default function Connect() {
 
             <FadeUp delay={0.1}>
               <h2 className="text-[36px] md:text-[44px] font-semibold text-white tracking-[-0.022em] leading-[1.1] mb-3">
-                Work with me
+                Let&apos;s build something that actually ships.
               </h2>
             </FadeUp>
 
             <FadeUp delay={0.15}>
               <p className="text-[15px] text-white/50 leading-[1.65] mb-10">
-                Open to freelance AI projects, consulting, and full-time roles —
-                especially opportunities in Australia.
+                Got a business problem AI can solve? Need a production-grade app built fast? I scope quickly, build clean, and deliver things that work on day one.
               </p>
             </FadeUp>
 
@@ -195,7 +194,7 @@ export default function Connect() {
             <FadeUp delay={0.55}>
               <p className="text-[12px] text-white/25 mt-10 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot flex-shrink-0" />
-                I reply within 24 hours
+                Typically reply within 24 hours
               </p>
             </FadeUp>
           </SlideLeft>
@@ -204,10 +203,10 @@ export default function Connect() {
           <SlideRight delay={0.1} className="lg:col-span-3 bg-white px-8 py-[80px] flex flex-col justify-center">
             <FadeUp delay={0.15}>
               <h3 className="text-[24px] font-semibold text-[#1d1d1f] tracking-tight mb-2">
-                Get in touch
+                Start a project
               </h3>
               <p className="text-[15px] text-[#1d1d1f]/45 mb-8">
-                Want to build something together?
+                Tell me what you&apos;re building — I&apos;ll tell you how fast we can ship it.
               </p>
             </FadeUp>
 

@@ -7,13 +7,13 @@ const achievements = [
   {
     icon: "🎤",
     title: "Tech Talk at Zeta",
-    desc: "Presented on modern automation workflows",
+    desc: "Why your app makes users wait for data it already has and how to fix it.",
     color: "#0066cc",
   },
   {
     icon: "🏆",
-    title: "Multiple Awards",
-    desc: "Recognised for engineering contributions",
+    title: "5+ Impact Awards",
+    desc: "Recognized for shipping results at Zeta",
     color: "#2997ff",
   },
   {
@@ -23,9 +23,9 @@ const achievements = [
     color: "#5856d6",
   },
   {
-    icon: "🌏",
-    title: "Australia-bound",
-    desc: "Exploring opportunities in tech ecosystem",
+    icon: "🤝",
+    title: "Available for Projects",
+    desc: "AI automation · Websites · Apps",
     color: "#ff6b35",
   },
 ];
@@ -48,24 +48,28 @@ export default function About() {
               <FadeUp delay={0.1}>
                 <h2 className="text-[34px] md:text-[42px] font-semibold text-white tracking-[-0.022em] leading-[1.15] mb-8">
                   Building scalable{" "}
-                  <span className="text-white/45">frontend solutions</span>{" "}
-                  and AI products that matter.
+                  <span className="text-white/45">applications</span>{" "}
+                  and{" "}
+                  <span className="text-white/45">AI products</span>{" "}
+                  that matter
                 </h2>
               </FadeUp>
 
               <FadeUp delay={0.18}>
                 <p className="text-[17px] text-white/60 leading-[1.7] mb-8">
-                  2 years as SDE at Zeta building scalable frontend solutions.
-                  BITS Pilani graduate focused on AI automation, LLM
-                  integration, and voice AI. Gave a technical talk on modern
-                  automation workflows at Zeta.
+                  2 years at Zeta shipping apps used by 10+ million people.
+                  BITS Pilani grad who got bored with just frontend
+                  so I started building AI products and automation
+                  workflows that solve real business problems.
                 </p>
               </FadeUp>
 
               <FadeUp delay={0.24}>
                 <p className="text-[17px] text-white/60 leading-[1.7] mb-10">
-                  Currently building AI products while exploring opportunities
-                  in Australia&apos;s tech ecosystem.
+                  RAG pipelines. Voice agents. n8n automation.
+                  I don&apos;t wait for someone to build the tools I need
+                  I build them, then teach others how on{" "}
+                  <span className="text-[#2997ff]">@codelifewithharsh</span>.
                 </p>
               </FadeUp>
 
@@ -78,7 +82,7 @@ export default function About() {
                   <p className="text-[17px] text-white/75 leading-[1.65] italic">
                     &ldquo;Every product I ship and every reel I post is about
                     lowering the barrier between great ideas and working
-                    software.&rdquo;
+                    solution.&rdquo;
                   </p>
                 </div>
               </FadeUp>
@@ -114,13 +118,13 @@ export default function About() {
             <FadeUp delay={0.45}>
               <div className="mt-4 bg-[#0066cc] rounded-[18px] p-6">
                 <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-white/70 mb-2">
-                  Open to
+                  Working with me
                 </p>
                 <p className="text-[17px] font-semibold text-white leading-[1.4] mb-3">
-                  Freelance · Consulting · Full-time Roles
+                  AI Automation · Business Websites · Apps
                 </p>
                 <p className="text-[13px] text-white/70">
-                  Especially opportunities in Australia&apos;s tech ecosystem.
+                  Got a business problem? I&apos;ll build the AI solution that solves it.
                 </p>
               </div>
             </FadeUp>

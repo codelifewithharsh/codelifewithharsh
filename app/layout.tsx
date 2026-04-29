@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Harsh — Frontend Engineer & AI Builder",
+  title: "Harsh | AI & Dev",
   description:
     "Frontend engineer building AI products and teaching what I build. Based in India, open to opportunities in Australia.",
   keywords: [
