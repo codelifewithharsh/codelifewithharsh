@@ -110,3 +110,17 @@ body {
   transition: width 0.2s ease;
 }
 .nav-link:hover::after { width: 100%; }
+
+/* ─── Orbital ring animations ─── */
+@keyframes orbit-cw {
+  from { transform: rotate(0deg)    translateX(var(--r)) rotate(0deg); }
+  to   { transform: rotate(360deg)  translateX(var(--r)) rotate(-360deg); }
+}
+@keyframes orbit-ccw {
+  from { transform: rotate(0deg)    translateX(var(--r)) rotate(0deg); }
+  to   { transform: rotate(-360deg) translateX(var(--r)) rotate(360deg); }
+}
+@keyframes logo-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}

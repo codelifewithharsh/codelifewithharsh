@@ -1,243 +1,245 @@
-# CodeLifeWithHarsh - Personal Website Project
+# CodeLifeWithHarsh — Personal Website
 
 ## Project Overview
-Building a modern, personal portfolio website for codelifewithHarsh — a frontend engineer creating AI products and content. Target audience: recruiters (especially in Australia), potential clients, and Instagram followers learning AI/automation.
+Personal portfolio + content hub for Harsh Goyal (codelifewithharsh) — a frontend engineer building AI products and creating content. Target audience: recruiters (especially in Australia), potential clients, and Instagram/YouTube followers learning AI/automation.
 
-## Design System
-**Location**: See the uploaded design-system.md file for complete design tokens, colors, typography, spacing, and component patterns.
+## Design Tokens (Tailwind v4 — defined in `app/globals.css` `@theme`)
 
-**Key Design Principles**:
-- Modern & techy (clean, geometric, AI-forward)
-- Dark mode friendly
-- High signal-to-noise ratio (minimal, no fluff)
-- Mobile-first responsive
-- Fast loading, SEO optimized
+| Token | Value |
+|---|---|
+| `--color-action-blue` | `#0066cc` |
+| `--color-focus-blue` | `#0071e3` |
+| `--color-sky-blue` | `#2997ff` |
+| `--color-near-black` | `#1d1d1f` |
+| `--color-dark-tile` | `#272729` |
+| `--color-parchment` | `#f5f5f7` |
+| `--font-sans` | Inter, system-ui, … |
 
-## Website Structure
-**Reference**: See the uploaded structure screenshot (structure.jpg) for visual layout reference.
+**Body background**: `#1d1d1f` — **no** `tailwind.config.ts` (Tailwind v4 uses `@theme` only).
 
-**6 Main Sections** (in order):
-1. Hero - Name, tagline, badges, CTAs, social links
-2. codelifewithharsh - content creation showcase
-3. About - Short story (60 words), inline achievement badges
-4. Projects - 4 project cards in grid layout
-5. Skills - 4 grouped skill buckets (no progress bars)
-6. Connect - "Work with me" with 3-field form
+## Tech Stack
 
-**Navigation**: Sticky navbar with logo + links to: codelifewithharsh, About, Projects, Skills, Connect
+| Layer | Library / Version |
+|---|---|
+| Framework | Next.js 15.5.15 (App Router) |
+| UI | React 19 |
+| Styling | Tailwind CSS v4 |
+| Animation | Framer Motion 12 |
+| Email | Resend v6.12.2 |
+| GitHub calendar | react-github-calendar v5.0.6 |
 
-## Content Details
+## Routes
 
-### 1. HERO SECTION
-- **Name**: "Harsh" (48px, bold)
-- **Tagline**: "Frontend Engineer + AI Builder"
-- **Badges**: "BITS Pilani · SDE at Zeta"
-- **CTAs**: 
-  - Primary: "See my work" (scroll to #projects)
-  - Secondary: "Let's connect" (scroll to #connect)
-- **Social Icons**:
-  - Instagram: https://www.instagram.com/codelifewithharsh?igsh=OWtpcHRhMWJlaW1h
-  - LinkedIn: https://www.linkedin.com/in/code-life-with-harsh/
-  - GitHub: https://github.com/codelifewithharsh
+| Route | File | Notes |
+|---|---|---|
+| `/` | `app/page.tsx` | Homepage — server component |
+| `/toolkit` | `app/toolkit/page.tsx` | Toolkit page — server component with metadata |
+| `/api/contact` | `app/api/contact/route.ts` | POST — sends email via Resend to harshgoyal1415@gmail.com |
 
-### 2. CODELIFEWITHHARSH
-**Heading**: "codelifewithharsh"
-**Subheading**: "I teach what I build"
-**Description**: "Every project I work on becomes a reel — tutorials, demos, and honest breakdowns of what I'm learning in AI and tech. Follow along and build with me."
+## File Structure (actual)
 
-**Display**: 3 placeholder reel cards (9:16 aspect ratio rectangles)
-- Reel 1: "Tutorial" label
-- Reel 2: "Project demo" label
-- Reel 3: "AI explainer" label
+```
+app/
+  layout.tsx
+  page.tsx
+  globals.css                  ← Tailwind @theme + all global keyframes
+  api/
+    contact/
+      route.ts                 ← Resend email handler
+  toolkit/
+    page.tsx                   ← Metadata + layout shell
+    ToolkitContent.tsx         ← All toolkit UI ("use client")
 
-**Social buttons** (centered row below reels):
-- "Follow on Instagram" → https://www.instagram.com/codelifewithharsh?igsh=OWtpcHRhMWJlaW1h (primary button)
-- "Connect on LinkedIn" → https://www.linkedin.com/in/code-life-with-harsh/ (secondary button)
-- "GitHub" → https://github.com/codelifewithharsh (secondary button)
+components/
+  Navbar.tsx                   ← Sticky, cross-page aware
+  Hero.tsx                     ← Homepage hero with floating badges
+  Stats.tsx                    ← Light-bg animated counters (after hero)
+  CodeLifeWithHarsh.tsx        ← Reel showcase section
+  About.tsx                    ← Story + achievement badges
+  Projects.tsx                 ← 4 project cards grid
+  Skills.tsx                   ← 4 grouped tag buckets
+  Connect.tsx                  ← Contact form (calls /api/contact)
+  Footer.tsx                   ← Black footer with link columns + socials
+  AnimatedSection.tsx          ← FadeUp, SlideLeft, StaggerGrid/Item, useCountUp
+  OrbitalRing.tsx              ← Orbiting logo animation (toolkit hero only)
 
-**Note below buttons**: "More videos on @codelifewithharsh — posting every week"
+data/
+  resources.json               ← 23 resources, 6 categories
+  weekly-pick.json             ← Single "Pick of the Week" card
 
-### 3. ABOUT SECTION
-**Story** (copy exactly):
-"2 years as SDE at Zeta building scalable frontend solutions. BITS Pilani graduate focused on AI automation, LLM integration, and voice AI. Gave a technical talk on modern automation workflows at Zeta. Currently building AI products while exploring opportunities in Australia's tech ecosystem."
+public/
+  logo.png
+  hero.png                     ← Hero photo
+  background.png               ← Toolkit hero background
+  logos/                       ← claude.png, n8n.png, react.png, nextjs.png,
+                                  flutter.png, vapi.png, supabase.png, github.png
+  (other project images)
+```
 
-**Achievement badges** (shown inline below story):
-- "Tech Talk at Zeta"
-- "Multiple Awards"
+## Homepage Sections (in order)
 
-### 4. PROJECTS SECTION
-**Heading**: "What I build"
-**Subheading**: "Latest projects"
+### 1. Navbar (`components/Navbar.tsx`)
+- Sticky, black bg — `bg-black/85 backdrop-blur` when scrolled
+- Logo (`/logo.png`) → smooth scroll to top on `/`, `router.push('/')` from other pages
+- Nav links: **Studio** (`#content`), **About** (`#about`), **Projects** (`#projects`), **Skills** (`#skills`)
+- **Toolkit** link styled separately: blue pill border, active highlight on `/toolkit`
+- **"Let's connect"** CTA button → scrolls to `#connect` (or navigates to `/#connect` cross-page)
+- `usePathname` used for cross-page awareness
 
-**Project 1: Job Fit Evaluator + Application Generator**
-- Description: "Drop a Telegram job link. Get tailored resume, cover letter, and fit score — automatically."
-- Tech tags: n8n, OpenAI, Pinecone, Apify, Google Sheets, RAG
-- Links: GitHub button → https://github.com/codelifewithharsh, Live Demo button
-- Label: "Project 01 · AI Agent"
+### 2. Hero (`components/Hero.tsx`)
+- Full-viewport, dark `#1d1d1f` bg
+- Name: "Harsh Goyal" — 64–92px, semibold, tight tracking
+- Subtitle: "Software Engineer · AI Builder · Creator"
+- Two statement lines: "I build AI products." / "Teaching what I learn." (second at 50% opacity)
+- Hero photo: `/hero.png` with blue glow behind
+- Floating badge chips (Framer Motion float animations): "10M+ Users", "Tech Conclave Speaker", "Quick Facts"
+- CTAs: "See my work" (→ `#projects`), "Let's connect" (→ `#connect`)
+- Social icons: Instagram, LinkedIn, GitHub, YouTube
 
-**Project 2: AI Voice Assistant for Flat Booking**
-- Description: "Call an AI. Ask about the flat. Book a visit. Fully automated."
-- Tech tags: Vapi, Voice AI, Conversational AI, Automation
-- Links: GitHub button → https://github.com/codelifewithharsh, Live Demo button
-- Label: "Project 02 · Voice AI"
+### 3. Stats (`components/Stats.tsx`)
+- Light `#f5f5f7` background section
+- 4 animated count-up counters in a grid: `2+` years, `5+` awards, `100+` n8n templates, `16K+` Instagram views
+- Uses `useCountUp` from `AnimatedSection.tsx` + Framer Motion `useInView`
 
-**Project 3: App Review Analyzer + Report Generator**
-- Description: "Feed it app reviews. Get sentiment analysis and structured insights report in seconds."
-- Tech tags: Sentiment Analysis, NLP, OpenAI, Report Generation
-- Links: GitHub button → https://github.com/codelifewithharsh, Demo button
-- Label: "Project 03 · Analysis Tool"
+### 4. CodeLifeWithHarsh (`components/CodeLifeWithHarsh.tsx`)
+- Section id: `#content`
+- Heading: "codelifewithharsh" / "I teach what I build"
+- 3 placeholder reel cards (9:16 ratio) — Tutorial, Project demo, AI explainer
+- Reel stack hover fan animation (CSS classes `.reel-1/.reel-2/.reel-3`)
+- Buttons: "Follow on Instagram", "Connect on LinkedIn", "GitHub"
 
-**Project 4: 100 n8n Workflow Templates**
-- Description: "Hand-picked collection of production-ready n8n templates for AI agents and business automation."
-- Tech tags: n8n, Automation, AI Workflows, Resource
-- Links: GitHub button → https://github.com/codelifewithharsh
-- Label: "Project 04 · Curated Resource"
+### 5. About (`components/About.tsx`)
+- Section id: `#about`
+- 60-word story about 2 years at Zeta, BITS Pilani, AI focus, Australia opportunities
+- Inline achievement badges: "Tech Talk at Zeta", "Multiple Awards"
 
-### 5. SKILLS SECTION
-**Heading**: "Skills"
-**Subheading**: "What I know"
+### 6. Projects (`components/Projects.tsx`)
+- Section id: `#projects`
+- Heading: "What I build" / "Latest projects"
+- 4 cards: Job Fit Evaluator (n8n/RAG), AI Voice Assistant (Vapi), App Review Analyzer (NLP), 100 n8n Templates
+- All GitHub links → `https://github.com/codelifewithharsh`
 
-**Display as 4 clean tag groups** (no progress bars, no ratings):
+### 7. Skills (`components/Skills.tsx`)
+- Section id: `#skills`
+- 4 tag groups: Frontend, AI & Automation, Tools & Infrastructure, Currently Learning
 
-**Frontend**
-- React
-- Next.js
-- TypeScript
-- Tailwind CSS
+### 8. Connect (`components/Connect.tsx`)
+- Section id: `#connect`
+- 3-field form: Name, Email, "What do you need?" textarea
+- Submits to `POST /api/contact` → Resend → harshgoyal1415@gmail.com
+- Trust line: "I reply within 24 hours"
+- Social links row
 
-**AI & Automation**
-- LLM APIs (Claude, GPT)
-- RAG (Retrieval Augmented Generation)
-- Embeddings
-- Voice AI (Vapi)
-- n8n workflows
-- Prompt Engineering
+### 9. Footer (`components/Footer.tsx`)
+- Black bg, two link columns: Sections + Content
+- Social icons: Instagram, LinkedIn, GitHub, YouTube
+- Copy: "Made with intent. Shipped with care."
 
-**Tools & Infrastructure**
-- Git
-- Vercel
-- Node.js
-- REST APIs
+---
 
-**Currently Learning**
-- Fine-tuning models
-- Multimodal AI
+## Toolkit Page (`/toolkit`)
 
-### 6. CONNECT SECTION
-**Heading**: "Work with me"
-**Subheading**: "Want to build something together?"
-**Description**: "I'm open to freelance AI projects, consulting, and full-time roles — especially opportunities in Australia."
+Full client component in `app/toolkit/ToolkitContent.tsx`.
 
-**Contact Form** (3 fields only):
-- Name (text input)
-- Email (email input)
-- What do you need? (textarea)
-- Submit button: "Send message"
+### Sections (top to bottom)
 
-**Email display** (below form): codelifewithharsh@gmail.com
+**Breadcrumb** — "← Home / Toolkit"
 
-**Trust line**: "I reply within 24 hours"
+**Changelog strip** — slim pill banner linking to `#changelog`
 
-**Social links row** (below form):
-- Instagram: https://www.instagram.com/codelifewithharsh?igsh=OWtpcHRhMWJlaW1h
-- LinkedIn: https://www.linkedin.com/in/code-life-with-harsh/
-- GitHub: https://github.com/codelifewithharsh
+**Hero** — full-width section with `background.png` + gradient overlay blending to `#1d1d1f`. Two-column layout:
+- Left: eyebrow, h1 "Everything I use to build.", description, filter tabs, difficulty legend
+- Right (desktop only): `OrbitalRing` component — 3 rings, 8 orbiting logos, CSS-only animation
+- Mobile: static logo grid (hidden on `md+`)
 
-## Tech Stack Requirements
+**Stats bar** — 4 animated counters matching the Studio style: `40+` Resources, `6` Categories, `Weekly` Updated, `100%` Free. Bordered grid card on dark bg.
 
-### Framework & Libraries
-- **Next.js (latest)** (App Router)
-- **React 18**
-- **TypeScript**
-- **Tailwind CSS**
+**Pick of the Week** — full-width dark card, data from `data/weekly-pick.json`
 
-### Features to implement
-- ✅ Fully responsive (mobile-first)
-- ✅ Dark mode support
-- ✅ Smooth scroll navigation
-- ✅ Sticky navigation bar
-- ✅ SEO optimized (meta tags, semantic HTML)
-- ✅ Fast loading (optimized images, lazy loading)
-- ✅ Accessible (ARIA labels, keyboard navigation)
+**Resource grid** — `StaggerGrid` of `ResourceCard` components filtered by tab. Each card has:
+- `id={resource.id}` for deep-linking
+- `iDailyUse` → "✓ I use this daily" badge
+- `level` → colored dot (green=beginner, amber=intermediate, red=advanced)
+- Copy-link button → copies `window.location.origin + '/toolkit#' + id`
 
-### File Structure
-├── app/
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── globals.css
-├── components/
-│   ├── Hero.tsx
-│   ├── CodeLifeWithHarsh.tsx
-│   ├── About.tsx
-│   ├── Projects.tsx
-│   ├── Skills.tsx
-│   ├── Connect.tsx
-│   └── Navbar.tsx
-├── public/
-│   └── (images, icons)
-├── tailwind.config.ts
-├── tsconfig.json
-├── package.json
-└── claude.md (this file)
+**GitHub calendar** — `react-github-calendar` (dynamic import, named export workaround)
 
-## Development Instructions
+**Changelog section** — id `#changelog`, timestamped entries
 
-### Step 1: Project Setup
-- Initialize Next.js (latest) project with TypeScript and Tailwind
-- Set up proper folder structure
-- Install necessary dependencies
+**Email subscribe** — placeholder section
 
-### Step 2: Design System Implementation
-- Reference the design-system.md file for all design tokens
-- Set up Tailwind config with custom colors, fonts, spacing from design system
-- Create reusable component patterns
+### Data files
 
-### Step 3: Component Development
-Build components in this order:
-1. Navbar (sticky, with smooth scroll links)
-2. Hero section
-3. codelifewithharsh section (content creation showcase)
-4. About section
-5. Projects section (grid of cards)
-6. Skills section (grouped tags)
-7. Connect section (form + email + social links)
+**`data/resources.json`** — 23 resources with fields:
+```ts
+{
+  id: string;           // e.g. "stack-1" — used for anchor deep-linking
+  emoji: string;
+  title: string;
+  description: string;
+  category: string;     // one of the 6 categories below
+  tags: string[];       // e.g. ["Free", "Free tier"]
+  type: string;         // Tool | Docs | Guide | Template
+  link: string;
+  youtubeLink?: string;
+  isFeatured: boolean;
+  iDailyUse: boolean;   // shows "I use this daily" badge
+  level: "beginner" | "intermediate" | "advanced";
+}
+```
+Categories: `Automation & Workflows`, `LLMs & APIs`, `Voice AI`, `Frontend + AI`, `Learning Paths`, `My Daily Stack`
 
-### Step 4: Styling & Responsiveness
-- Follow design system for all spacing, colors, typography
-- Mobile breakpoints: sm (640px), md (768px), lg (1024px)
-- Test on mobile, tablet, desktop viewports
+**`data/weekly-pick.json`** — single object: `title`, `description`, `link`, `reelLink`, `category`, `week`
 
-### Step 5: Deployment Preparation
-- Optimize images
-- Add meta tags for SEO
-- Test performance (Lighthouse score)
-- Prepare for Vercel deployment
+### OrbitalRing (`components/OrbitalRing.tsx`)
+- `LOGO_DATA` exported for mobile static grid
+- 3 rings: r=90 (cw), r=150 (ccw), r=215 (cw)
+- Container: 480×480px
+- CSS keyframes `orbit-cw`, `orbit-ccw`, `logo-breathe` in `globals.css`
+- Technique: `rotate(θ) translateX(var(--r)) rotate(-θ)` — logos stay upright
+- `--r` CSS custom property set inline per logo
+- Hover: pauses animation, scales logo 1.4×, shows tooltip
 
-## codelifewithharsh
-- **Handle**: CodeLifeWithHarsh
-- **Instagram**: https://www.instagram.com/codelifewithharsh?igsh=OWtpcHRhMWJlaW1h
-- **LinkedIn**: https://www.linkedin.com/in/code-life-with-harsh/
-- **GitHub**: https://github.com/codelifewithharsh
-- **Email**: codelifewithharsh@gmail.com
-- **Tagline**: "Frontend Engineer + AI Builder"
-- **Color preference**: Modern tech palette (refer to design-system.md)
-- **Tone**: Technical but approachable, no fluff, educational, confident
+---
 
-## Important Notes
-- All placeholder images/reels will be replaced with real content later
-- GitHub and demo links per project are placeholders pointing to the main GitHub profile for now
-- The codelifewithharsh section (section 2) is the content creation showcase — treat it as a priority feature, not an afterthought
-- Follow the uploaded structure screenshot for exact visual layout
-- Use design-system.md for all design decisions (colors, spacing, typography, components)
+## Animations (globals.css)
 
-## Goals
-1. **Primary**: Get website live in 2 weeks as MVP
-2. **Secondary**: Build credibility for Australian tech job market
-3. **Tertiary**: Drive Instagram followers to website and vice versa
+| Keyframe | Used by |
+|---|---|
+| `float-a/b/c` | Hero floating badge chips |
+| `orbit-cw` / `orbit-ccw` | OrbitalRing logos |
+| `logo-breathe` | OrbitalRing logos (scale 1→1.08→1) |
+| `pulse-dot` | Status indicator dots |
 
-## Success Metrics
-- Clean, professional appearance
-- Fast loading (<2s)
-- Mobile responsive
-- Easy to update content later
-- Ready to deploy on Vercel
+CSS utilities: `.reel-1/.reel-2/.reel-3` fan stack, `.stat-hover` underline, `.card-lift`, `.nav-link` underline, `.pulse-dot`
+
+---
+
+## Social Links
+
+| Platform | URL |
+|---|---|
+| Instagram | https://www.instagram.com/codelifewithharsh?igsh=OWtpcHRhMWJlaW1h |
+| LinkedIn | https://www.linkedin.com/in/code-life-with-harsh/ |
+| GitHub | https://github.com/codelifewithharsh |
+| YouTube | https://youtube.com/@codelifewithharsh |
+| Email | codelifewithharsh@gmail.com |
+
+---
+
+## Environment Variables
+
+| Key | Purpose |
+|---|---|
+| `RESEND_API_KEY` | Contact form email sending |
+
+---
+
+## Build Notes
+- `npm run build` compiles cleanly — verify after any change to `ToolkitContent.tsx` or `OrbitalRing.tsx`
+- `react-github-calendar` v5 uses named export; dynamic import pattern:
+  ```ts
+  dynamic(() => import("react-github-calendar").then(m => ({ default: m.GitHubCalendar })))
+  ```
+- No `tailwind.config.ts` — all design tokens live in `globals.css` `@theme` block
+- `--r` CSS custom property on orbital wrappers requires cast: `["--r" as string]: \`${radius}px\``

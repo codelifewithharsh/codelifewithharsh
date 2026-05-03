@@ -3,18 +3,21 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const navLinks = [
   { label: "Studio", href: "#content" },
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
-  { label: "Connect", href: "#connect" },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -22,10 +25,36 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleLogoClick = () => {
+    setMenuOpen(false);
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
+    }
+  };
+
   const handleNav = (href: string) => {
     setMenuOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    if (pathname === "/" && href.startsWith("#")) {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    } else if (href.startsWith("#")) {
+      window.location.href = "/" + href;
+    } else {
+      router.push(href);
+    }
   };
+
+  const handleConnectClick = () => {
+    setMenuOpen(false);
+    if (pathname === "/") {
+      document.querySelector("#connect")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = "/#connect";
+    }
+  };
+
+  const isToolkitPage = pathname === "/toolkit";
 
   return (
     <>
@@ -42,7 +71,7 @@ export default function Navbar() {
         <div className="max-w-[1200px] mx-auto px-6 h-[52px] flex items-center justify-between">
           {/* Logo */}
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={handleLogoClick}
             className="hover:opacity-70 transition-opacity duration-200 flex-shrink-0"
             aria-label="Home"
           >
@@ -57,7 +86,7 @@ export default function Navbar() {
           </button>
 
           {/* Desktop nav — centered */}
-          <ul className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+          <ul className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <button
@@ -68,12 +97,27 @@ export default function Navbar() {
                 </button>
               </li>
             ))}
+
+            {/* Toolkit — distinct styled link */}
+            <li>
+              <Link
+                href="/toolkit"
+                className={`inline-flex items-center gap-1.5 text-[12px] tracking-[-0.12px] px-2.5 py-[5px] rounded-full border transition-all duration-200 ${
+                  isToolkitPage
+                    ? "text-[#2997ff] border-[#2997ff]/50 bg-[#2997ff]/10"
+                    : "text-white/65 border-white/[0.14] hover:text-[#2997ff] hover:border-[#2997ff]/40 hover:bg-[#2997ff]/[0.07]"
+                }`}
+              >
+                <span className="text-[#2997ff] text-[9px] leading-none">✦</span>
+                Toolkit
+              </Link>
+            </li>
           </ul>
 
           {/* Right: CTA */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => handleNav("#connect")}
+              onClick={handleConnectClick}
               className="hidden sm:inline-flex items-center bg-[#0066cc] hover:bg-[#0071e3] text-white text-[12px] font-medium px-4 py-[7px] rounded-full transition-all duration-200 active:scale-95 flex-shrink-0"
             >
               Let&apos;s connect
@@ -128,9 +172,26 @@ export default function Navbar() {
                   </button>
                 </motion.li>
               ))}
+
+              {/* Toolkit mobile */}
+              <motion.li
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navLinks.length * 0.05 }}
+              >
+                <Link
+                  href="/toolkit"
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full flex items-center gap-2 text-[15px] py-3.5 border-b border-white/[0.08] text-[#2997ff] hover:text-[#2997ff]/80 transition-colors"
+                >
+                  <span className="text-[11px]">✦</span>
+                  Toolkit
+                </Link>
+              </motion.li>
+
               <li className="pt-4">
                 <button
-                  onClick={() => handleNav("#connect")}
+                  onClick={handleConnectClick}
                   className="w-full bg-[#0066cc] text-white text-[15px] py-3 rounded-full font-medium"
                 >
                   Let&apos;s connect
