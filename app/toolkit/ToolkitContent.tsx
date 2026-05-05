@@ -136,7 +136,7 @@ function AnnouncementBanner({ onExploreClick }: { onExploreClick: () => void }) 
             style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: "#34c759" }}
           />
           <span className="hidden md:block text-[13px] text-white/70">
-            New — 100 n8n templates now live in the toolkit
+            New - 100 n8n templates now live in the toolkit
           </span>
           <span className="md:hidden text-[13px] text-white/70">
             100 n8n templates added
@@ -428,7 +428,7 @@ function EmptyCard() {
       className="flex flex-col items-center justify-center text-center p-5 rounded-[16px] border border-dashed border-white/[0.12] bg-white/[0.02]"
     >
       <p className="text-[13px] text-white/30 leading-[1.6]">
-        More coming soon —<br />
+        More coming soon -<br />
         follow <span className="text-white/45">@codelifewithharsh</span><br />
         for updates
       </p>
@@ -518,7 +518,7 @@ function CategoryRow({
             <p className="text-[13px] text-white/35">{CATEGORY_DESCRIPTIONS[category]}</p>
           </div>
 
-          {/* Arrow buttons — desktop only */}
+          {/* Arrow buttons - desktop only */}
           <div className="hidden md:flex items-center gap-2 flex-shrink-0 mt-1">
             <button
               onClick={handleScrollLeft}
@@ -572,7 +572,7 @@ function CategoryRow({
           <div style={{ width: 4, flexShrink: 0 }} />
         </div>
 
-        {/* Fade gradient — right edge */}
+        {/* Fade gradient - right edge */}
         {!isAtEnd && (
           <div
             className="absolute top-0 right-0 bottom-4 w-20 pointer-events-none"
@@ -1163,7 +1163,7 @@ function ClaudeCoursePage() {
               FREE COURSE
             </p>
             <h2 className="text-[26px] md:text-[30px] font-semibold text-white tracking-[-0.018em] leading-[1.2]">
-              Learn Claude — from first prompt to production AI app
+              Learn Claude - from first prompt to production AI app
             </h2>
           </div>
           <p className="text-[13px] text-white/35 md:text-right leading-[1.8] flex-shrink-0">
@@ -1345,6 +1345,8 @@ export default function ToolkitContent() {
   const [activeTab, setActiveTab] = useState("All");
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [subscribing, setSubscribing] = useState(false);
+  const [subscribeError, setSubscribeError] = useState("");
 
   const resources = resourcesData as Resource[];
   const weeklyPick = weeklyPickData as WeeklyPick;
@@ -1366,7 +1368,7 @@ export default function ToolkitContent() {
     }
   }, [activeTab]);
 
-  /* Scroll spy — disabled when Claude tab is active */
+  /* Scroll spy - disabled when Claude tab is active */
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
     CATEGORIES.forEach((category) => {
@@ -1417,8 +1419,32 @@ export default function ToolkitContent() {
     }
   };
 
-  const handleSubscribe = () => {
-    if (email.trim()) setSubscribed(true);
+  const handleSubscribe = async () => {
+    const trimmed = email.trim();
+    if (!trimmed || subscribing) return;
+    setSubscribeError("");
+    setSubscribing(true);
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: trimmed, source: "toolkit" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        if (data.error === "already_subscribed") {
+          setSubscribeError("You're already subscribed!");
+        } else {
+          setSubscribeError("Something went wrong. Try again.");
+        }
+        return;
+      }
+      setSubscribed(true);
+    } catch {
+      setSubscribeError("Something went wrong. Try again.");
+    } finally {
+      setSubscribing(false);
+    }
   };
 
   return (
@@ -1496,7 +1522,7 @@ export default function ToolkitContent() {
             </FadeUp>
             <FadeUp delay={0.12}>
               <p className="text-[17px] md:text-[19px] text-white/50 leading-[1.65] mb-10">
-                Everything I use to build, learn, and ship AI products — curated for developers who
+                Everything I use to build, learn, and ship AI products - curated for developers who
                 want to actually get things done.
               </p>
             </FadeUp>
@@ -1574,7 +1600,7 @@ export default function ToolkitContent() {
       {/* Stats row */}
       <HeroStatsRow />
 
-      {/* CHANGE 4: Difficulty legend — between hero and sticky tab bar */}
+      {/* CHANGE 4: Difficulty legend - between hero and sticky tab bar */}
       <div className="flex items-center justify-center gap-5 py-3 border-b border-white/[0.05]">
         {[
           { emoji: "🟢", label: "Beginner" },
@@ -1590,7 +1616,7 @@ export default function ToolkitContent() {
       {/* Sticky tab bar */}
       <StickyTabBar activeTab={activeTab} onTabClick={handleTabClick} />
 
-      {/* Content area — course or resource rows */}
+      {/* Content area - course or resource rows */}
       <div id="toolkit-content-area" className="max-w-[1200px] mx-auto px-6 pt-10 pb-6">
         {activeTab === "✦ Claude" ? (
           <ClaudeCoursePage />
@@ -1658,7 +1684,7 @@ export default function ToolkitContent() {
               Stay ahead of the AI curve.
             </h2>
             <p className="text-[15px] md:text-[16px] text-white/45 mb-8 max-w-[440px] mx-auto leading-[1.65]">
-              New tools, templates, and breakdowns — straight to your inbox before they hit
+              New tools, templates, and breakdowns - straight to your inbox before they hit
               Instagram.
             </p>
 
@@ -1677,13 +1703,50 @@ export default function ToolkitContent() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
                     onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
-                    className="flex-1 bg-white/[0.06] border border-white/[0.1] rounded-full px-5 py-2.5 text-white placeholder-white/25 text-[14px] focus:outline-none focus:border-[#2997ff]/40 transition-colors"
+                    disabled={subscribing}
+                    className="flex-1 bg-white/[0.06] border border-white/[0.1] rounded-full px-5 py-2.5 text-white placeholder-white/25 text-[14px] focus:outline-none focus:border-[#2997ff]/40 transition-colors disabled:opacity-50"
                   />
                   <button
                     onClick={handleSubscribe}
-                    className="bg-[#0066cc] hover:bg-[#0071e3] text-white text-[14px] font-medium px-6 py-2.5 rounded-full transition-all duration-200 active:scale-95 whitespace-nowrap"
+                    disabled={subscribing}
+                    className="relative overflow-hidden bg-[#0066cc] hover:bg-[#0071e3] disabled:bg-[#0066cc] text-white text-[14px] font-medium px-6 py-2.5 rounded-full transition-all duration-200 active:scale-95 whitespace-nowrap min-w-[120px]"
                   >
-                    Subscribe →
+                    <AnimatePresence mode="wait">
+                      {subscribing ? (
+                        <motion.span
+                          key="loading"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
+                          transition={{ duration: 0.15 }}
+                          className="flex items-center justify-center gap-[5px]"
+                        >
+                          {[0, 1, 2].map((i) => (
+                            <motion.span
+                              key={i}
+                              className="block w-[5px] h-[5px] rounded-full bg-white"
+                              animate={{ opacity: [0.3, 1, 0.3], y: [0, -4, 0] }}
+                              transition={{
+                                duration: 0.8,
+                                repeat: Infinity,
+                                delay: i * 0.15,
+                                ease: "easeInOut",
+                              }}
+                            />
+                          ))}
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="label"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
+                          transition={{ duration: 0.15 }}
+                        >
+                          Subscribe →
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
                   </button>
                 </motion.div>
               ) : (
@@ -1699,6 +1762,9 @@ export default function ToolkitContent() {
               )}
             </AnimatePresence>
 
+            {subscribeError && (
+              <p className="text-[13px] text-red-400/80 mt-3">{subscribeError}</p>
+            )}
             <p className="text-[12px] text-white/20 mt-5">No spam. Unsubscribe anytime.</p>
           </div>
         </FadeUp>

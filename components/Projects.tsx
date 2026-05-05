@@ -23,7 +23,7 @@ const projects: Project[] = [
     icon: "🤖",
     title: "Job Fit Evaluator + Application Generator",
     description:
-      "Drop a Telegram job link. Get tailored resume, cover letter, and fit score — automatically.",
+      "Drop a Telegram job link. Get tailored resume, cover letter, and fit score - automatically.",
     tags: ["n8n", "OpenAI", "Pinecone", "Apify", "Google Sheets", "RAG"],
     github: "https://github.com/codelifewithharsh/AI-Job-Assistant",
     n8nLink: "https://n8n.io/workflows/14667-evaluate-job-fit-and-generate-application-assets-from-telegram-links-with-openai-pinecone-apify-and-google-sheets/",

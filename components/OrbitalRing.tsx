@@ -3,16 +3,16 @@
 import { useState } from "react";
 import Image from "next/image";
 
-/* ── Shared logo data — exported for the mobile static grid ── */
+/* ── Shared logo data - exported for the mobile static grid ── */
 export const LOGO_DATA = [
-  /* Ring 1 — clockwise, r=90 */
+  /* Ring 1 - clockwise, r=90 */
   { id: "claude",   file: "claude.png",   size: 36, radius: 90,  speed: 25, dir: "cw"  as const, startAngle: 0,   breathe: 2.5, name: "Claude AI",  desc: "My primary LLM for building" },
   { id: "flutter",  file: "flutter.png",  size: 32, radius: 90,  speed: 25, dir: "cw"  as const, startAngle: 180, breathe: 3.0, name: "Flutter",    desc: "Cross-platform mobile" },
-  /* Ring 2 — counter-clockwise, r=150 */
+  /* Ring 2 - counter-clockwise, r=150 */
   { id: "n8n",      file: "n8n.png",      size: 32, radius: 150, speed: 40, dir: "ccw" as const, startAngle: 0,   breathe: 3.5, name: "n8n",        desc: "Automation workflows" },
   { id: "vapi",     file: "vapi.png",     size: 28, radius: 150, speed: 40, dir: "ccw" as const, startAngle: 120, breathe: 2.8, name: "Vapi",       desc: "Voice AI agents" },
   { id: "supabase", file: "supabase.png", size: 30, radius: 150, speed: 40, dir: "ccw" as const, startAngle: 240, breathe: 3.2, name: "Supabase",   desc: "Database & backend" },
-  /* Ring 3 — clockwise, r=215 */
+  /* Ring 3 - clockwise, r=215 */
   { id: "react",    file: "react.png",    size: 34, radius: 215, speed: 60, dir: "cw"  as const, startAngle: 0,   breathe: 2.6, name: "React",      desc: "UI development" },
   { id: "nextjs",   file: "nextjs.png",   size: 32, radius: 215, speed: 60, dir: "cw"  as const, startAngle: 120, breathe: 3.8, name: "Next.js",    desc: "Full-stack web apps" },
   { id: "github",   file: "github.png",   size: 28, radius: 215, speed: 60, dir: "cw"  as const, startAngle: 240, breathe: 3.0, name: "GitHub",     desc: "All my code lives here" },
@@ -24,7 +24,7 @@ const RING_LINES = [
   { radius: 215, color: "rgba(127,119,221,0.08)" },
 ];
 
-const SIZE = 480; // container px — logos at r=215 stay within SIZE/2=240
+const SIZE = 480; // container px - logos at r=215 stay within SIZE/2=240
 
 export default function OrbitalRing() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);

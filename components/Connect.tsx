@@ -177,7 +177,7 @@ export default function Connect() {
       <div className="max-w-[1200px] mx-auto rounded-[28px] overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-5 min-h-[600px]">
 
-          {/* Left dark panel — like structure.jpg contact info side */}
+          {/* Left dark panel - like structure.jpg contact info side */}
           <SlideLeft className="lg:col-span-2 bg-[#272729] px-8 py-[80px] flex flex-col justify-center">
             <FadeUp delay={0.05}>
               <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#2997ff] mb-6">
@@ -227,14 +227,14 @@ export default function Connect() {
             </FadeUp>
           </SlideLeft>
 
-          {/* Right white panel — form */}
+          {/* Right white panel - form */}
           <SlideRight delay={0.1} className="lg:col-span-3 bg-white px-8 py-[80px] flex flex-col justify-center">
             <FadeUp delay={0.15}>
               <h3 className="text-[24px] font-semibold text-[#1d1d1f] tracking-tight mb-2">
                 Start a project
               </h3>
               <p className="text-[15px] text-[#1d1d1f]/45 mb-8">
-                Tell me what you&apos;re building — I&apos;ll tell you how fast we can ship it.
+                Tell me what you&apos;re building - I&apos;ll tell you how fast we can ship it.
               </p>
             </FadeUp>
 

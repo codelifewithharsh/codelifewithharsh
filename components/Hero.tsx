@@ -60,7 +60,7 @@ function HeroVisual() {
   return (
     <div className="relative w-full h-[420px] md:h-[490px] flex items-end justify-center select-none">
 
-      {/* Subtle glow behind image — at neck level */}
+      {/* Subtle glow behind image - at neck level */}
       <div className="absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[55%] bg-[#0066cc]/10 blur-[80px] rounded-full pointer-events-none" />
 
       {/* Hero photo */}
@@ -75,7 +75,7 @@ function HeroVisual() {
         />
       </div>
 
-      {/* Floating chip — 10M+ Users (top-left) */}
+      {/* Floating chip - 10M+ Users (top-left) */}
       <div className="float-a absolute top-[8%] left-0 z-20 bg-[#272729]/90 backdrop-blur-sm rounded-[14px] p-2 md:p-3.5 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         {/* Mobile version */}
         <div className="md:hidden flex flex-row items-start gap-2">
@@ -115,7 +115,7 @@ function HeroVisual() {
         </div>
       </div>
 
-      {/* Floating chip — @codelifewithharsh (top-right) */}
+      {/* Floating chip - @codelifewithharsh (top-right) */}
       <div className="float-b absolute top-[18%] right-0 z-20 bg-[#0066cc] rounded-[12px] px-1.5 md:px-3 py-1.5 md:py-2.5 shadow-[0_4px_16px_rgba(0,102,204,0.45)]">
         <div className="flex items-center gap-1 md:gap-2 mb-1 md:mb-2">
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 flex-shrink-0">
@@ -138,7 +138,7 @@ function HeroVisual() {
         </div>
       </div>
 
-      {/* Floating chip — Quick Facts (bottom-right) */}
+      {/* Floating chip - Quick Facts (bottom-right) */}
       <div className="float-c absolute bottom-[12%] right-0 z-20 bg-[#1d1d1f]/90 backdrop-blur-sm rounded-[14px] p-2 md:p-3.5 border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
         <p className="text-[8px] md:text-[9px] font-semibold tracking-[0.1em] uppercase text-white/30 mb-1.5 md:mb-2.5">Quick Facts</p>
         <div className="flex flex-col gap-1.5 md:gap-2">
@@ -167,14 +167,14 @@ export default function Hero() {
           {/* ── Left: Text content ── */}
           <div className="max-w-[560px]">
 
-            {/* Name — HUGE */}
+            {/* Name - HUGE */}
             <motion.h1
               {...fadeUp(0.2)}
               className="text-[64px] sm:text-[80px] md:text-[92px] font-semibold leading-[1.0] tracking-[-0.03em] text-white mb-6"
             >
               Harsh Goyal
             </motion.h1>
-            {/* Tiny subtitle — sits above name */}
+            {/* Tiny subtitle - sits above name */}
             <motion.p
               {...fadeUp(0.1)}
               className="text-[11px] md:text-[12px] font-medium tracking-[0.12em] uppercase text-white/35 mb-4"

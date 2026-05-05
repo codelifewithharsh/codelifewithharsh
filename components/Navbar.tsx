@@ -85,7 +85,7 @@ export default function Navbar() {
             />
           </button>
 
-          {/* Desktop nav — centered */}
+          {/* Desktop nav - centered */}
           <ul className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -98,7 +98,7 @@ export default function Navbar() {
               </li>
             ))}
 
-            {/* Toolkit — distinct styled link */}
+            {/* Toolkit - distinct styled link */}
             <li>
               <Link
                 href="/toolkit"

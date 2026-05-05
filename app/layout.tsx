@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Harsh", url: "https://github.com/codelifewithharsh" }],
   openGraph: {
-    title: "Harsh — Frontend Engineer & AI Builder",
+    title: "Harsh - Frontend Engineer & AI Builder",
     description:
       "Frontend engineer building AI products and teaching what I build.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Harsh — Frontend Engineer & AI Builder",
+    title: "Harsh - Frontend Engineer & AI Builder",
     description:
       "Frontend engineer building AI products and teaching what I build.",
   },

@@ -117,12 +117,12 @@ export default function Skills() {
         {/* Split: visual left, extra content right */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
 
-          {/* Left 3/5 — grid visual */}
+          {/* Left 3/5 - grid visual */}
           <SlideLeft className="lg:col-span-3">
             <SkillsVisual />
           </SlideLeft>
 
-          {/* Right 2/5 — context + current focus */}
+          {/* Right 2/5 - context + current focus */}
           <SlideRight delay={0.15} className="lg:col-span-2 flex flex-col gap-5">
             <FadeUp delay={0.1}>
               <div className="bg-[#272729] rounded-[18px] p-6 border border-white/[0.06]">

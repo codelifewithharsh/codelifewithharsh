@@ -73,7 +73,7 @@ export default function About() {
                 </p>
               </FadeUp>
 
-              {/* "Our Value" style dark card — like structure.jpg */}
+              {/* "Our Value" style dark card - like structure.jpg */}
               <FadeUp delay={0.3}>
                 <div className="bg-[#1d1d1f] rounded-[18px] p-6 border border-white/[0.06]">
                   <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-white/30 mb-3">
@@ -114,7 +114,7 @@ export default function About() {
               ))}
             </div>
 
-            {/* Vision card — like structure.jpg "Our Vision" */}
+            {/* Vision card - like structure.jpg "Our Vision" */}
             <FadeUp delay={0.45}>
               <div className="mt-4 bg-[#0066cc] rounded-[18px] p-6">
                 <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-white/70 mb-2">

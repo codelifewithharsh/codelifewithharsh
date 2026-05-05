@@ -6,7 +6,7 @@ import ToolkitContent from "./ToolkitContent";
 export const metadata: Metadata = {
   title: "Toolkit | Harsh",
   description:
-    "Everything I use to build, learn, and ship AI products — curated for developers who want to actually get things done.",
+    "Everything I use to build, learn, and ship AI products - curated for developers who want to actually get things done.",
 };
 
 export default function ToolkitPage() {

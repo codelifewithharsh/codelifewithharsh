@@ -16,14 +16,14 @@
           "reelUrl": "",
           "youtubeUrl": "",
           "takeaways": [
-            "Claude is built by Anthropic — focused on safety + helpfulness",
+            "Claude is built by Anthropic - focused on safety + helpfulness",
             "Stronger at long documents, nuanced writing, and coding",
-            "Free tier available at claude.ai — no credit card needed",
+            "Free tier available at claude.ai - no credit card needed",
             "Has Projects feature for persistent context across chats"
           ],
           "resources": [
             {
-              "title": "Claude.ai — start here",
+              "title": "Claude.ai - start here",
               "link": "https://claude.ai",
               "type": "Official"
             },
@@ -38,14 +38,14 @@
         },
         {
           "id": "t0-m2",
-          "title": "Claude vs ChatGPT — honest comparison",
+          "title": "Claude vs ChatGPT - honest comparison",
           "description": "A developer's take on when to use Claude vs ChatGPT. No sponsored opinions.",
           "reelUrl": "",
           "youtubeUrl": "",
           "takeaways": [
             "Claude wins on: long context, nuanced instructions, coding",
             "ChatGPT wins on: plugins ecosystem, image generation",
-            "Both have free tiers — try both before deciding",
+            "Both have free tiers - try both before deciding",
             "For building AI products: Claude API is cleaner to work with"
           ],
           "resources": [
@@ -66,9 +66,9 @@
           "youtubeUrl": "",
           "takeaways": [
             "Use Projects to give Claude persistent memory",
-            "Upload files — Claude reads PDFs, CSVs, code",
+            "Upload files - Claude reads PDFs, CSVs, code",
             "Use voice mode on mobile for quick queries",
-            "Claude.ai has a free tier — start there"
+            "Claude.ai has a free tier - start there"
           ],
           "resources": [
             {
@@ -98,9 +98,9 @@
           "reelUrl": "",
           "youtubeUrl": "",
           "takeaways": [
-            "Be specific — vague prompts get vague answers",
+            "Be specific - vague prompts get vague answers",
             "Give Claude a role: 'You are a senior React developer'",
-            "Use examples — show it what good output looks like",
+            "Use examples - show it what good output looks like",
             "Ask Claude to think step by step for complex problems"
           ],
           "resources": [
@@ -110,7 +110,7 @@
               "type": "Official"
             },
             {
-              "title": "Prompt library — Anthropic",
+              "title": "Prompt library - Anthropic",
               "link": "https://anthropic.com/prompts",
               "type": "Official"
             }
@@ -120,7 +120,7 @@
         },
         {
           "id": "t1-m2",
-          "title": "System prompts — what they are and why they matter",
+          "title": "System prompts - what they are and why they matter",
           "description": "System prompts are how you turn Claude into a custom AI for any use case.",
           "reelUrl": "",
           "youtubeUrl": "",
@@ -132,7 +132,7 @@
           ],
           "resources": [
             {
-              "title": "System prompts — Anthropic docs",
+              "title": "System prompts - Anthropic docs",
               "link": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts",
               "type": "Official"
             }
@@ -142,19 +142,19 @@
         },
         {
           "id": "t1-m3",
-          "title": "Claude for coding — real developer workflows",
+          "title": "Claude for coding - real developer workflows",
           "description": "How I use Claude daily to write, debug, and review code faster.",
           "reelUrl": "",
           "youtubeUrl": "",
           "takeaways": [
-            "Paste your full file — Claude handles large context",
+            "Paste your full file - Claude handles large context",
             "Ask for code review before asking for fixes",
             "Use Claude to write tests for existing code",
             "Claude Code (CLI) for agentic coding tasks"
           ],
           "resources": [
             {
-              "title": "Claude Code — CLI tool",
+              "title": "Claude Code - CLI tool",
               "link": "https://claude.ai/code",
               "type": "Official"
             }
@@ -164,7 +164,7 @@
         },
         {
           "id": "t1-m4",
-          "title": "Claude + n8n — automation workflows",
+          "title": "Claude + n8n - automation workflows",
           "description": "How I connect Claude to n8n to automate real business workflows.",
           "reelUrl": "",
           "youtubeUrl": "",
@@ -209,7 +209,7 @@
           "takeaways": [
             "Get API key from console.anthropic.com",
             "Install: npm install @anthropic-ai/sdk",
-            "Never expose API key in frontend — use API routes",
+            "Never expose API key in frontend - use API routes",
             "Start with claude-haiku for cheap testing"
           ],
           "resources": [
@@ -219,7 +219,7 @@
               "type": "Official"
             },
             {
-              "title": "Anthropic SDK — npm",
+              "title": "Anthropic SDK - npm",
               "link": "https://www.npmjs.com/package/@anthropic-ai/sdk",
               "type": "Docs"
             }
@@ -230,7 +230,7 @@
         {
           "id": "t2-m2",
           "title": "Streaming responses in React",
-          "description": "Make your AI app feel instant — stream Claude responses word by word.",
+          "description": "Make your AI app feel instant - stream Claude responses word by word.",
           "reelUrl": "",
           "youtubeUrl": "",
           "takeaways": [
@@ -256,7 +256,7 @@
         },
         {
           "id": "t2-m3",
-          "title": "RAG — give Claude your own data",
+          "title": "RAG - give Claude your own data",
           "description": "How to build a document Q&A system using Claude + embeddings + Pinecone.",
           "reelUrl": "",
           "youtubeUrl": "",
@@ -288,7 +288,7 @@
           "reelUrl": "",
           "youtubeUrl": "",
           "takeaways": [
-            "Vapi handles voice layer — Claude handles intelligence",
+            "Vapi handles voice layer - Claude handles intelligence",
             "Define assistant personality in system prompt",
             "Tool calling lets Claude trigger real actions",
             "My flat booking agent uses this exact pattern"
